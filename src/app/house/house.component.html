@@ -1,0 +1,103 @@
+<!-- Page to display a particular house information -->
+<div class="container houseClass">
+  
+  <div class="row" *ngIf="house">
+    <div class="col-1 mt-4">
+      <a class="btn btn-success" (click)=goBackToPreviousPage()>Go Back</a>
+    </div>
+    <div class="col-11">
+      <h1 class="display-3 text-center" *ngIf="house.name; else noName">{{house.name}}</h1>
+      <ng-template #noName>
+        <h1 class="display-3 text-center">House-Anonymous</h1>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row" *ngIf="house">
+    <div class="col">
+      <table class="table table-borderless">
+        <tbody *ngIf="house">
+          <tr>
+            <th scope="row">Region</th>
+            <td *ngIf="house.region; else noRegion">{{house.region}}</td>
+            <ng-template #noRegion>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-success">
+            <th scope="row">Coat of Arms</th>
+            <td *ngIf="house.coatOfArms; else noCoatOfArms">{{house.coatOfArms}}</td>
+            <ng-template #noCoatOfArms>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr>
+            <th scope="row">Words</th>
+            <td *ngIf="house.words; else noWords">{{house.words}}</td>
+            <ng-template #noWords>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-success">
+            <th scope="row">Titles</th>
+            <td *ngIf="house.titles && house.titles.length > 1; else noTitles">
+              <span *ngFor="let title of house.titles;let first=first;let last=last">{{title}}{{last ? '':', '}}
+              </span>
+            </td>
+            <ng-template #noTitles>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr>
+            <th scope="row">Seats</th>
+            <td *ngIf="house.seats && house.seats.length > 1; else noSeats">
+              <span *ngFor="let seat of house.seats;let first=first;let last=last">{{seat}}{{last ? '':', '}}
+              </span>
+            </td>
+            <ng-template #noSeats>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-success">
+            <th scope="row">Heir</th>
+            <td *ngIf="house.heir; else noHeir">{{house.heir}}</td>
+            <ng-template #noHeir>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+         
+          <tr>
+            <th scope="row">Founded</th>
+            <td *ngIf="house.founded; else noFounded">{{house.founded}}</td>
+            <ng-template #noFounded>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-success">
+            <th scope="row">Founder</th>
+            <td *ngIf="house.founder; else noFounder">{{house.founder}}</td>
+            <ng-template #noFounder>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr>
+            <th scope="row">Died Out</th>
+            <td *ngIf="house.diedOut; else noDiedOut">{{house.diedOut}}</td>
+            <ng-template #noDiedOut>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-success">
+            <th scope="row">Ancestral Weapons</th>
+            <td *ngIf="house.ancestralWeapons && house.ancestralWeapons.length > 1; else noAncestralWeapon">
+              <span *ngFor="let ancestralWeapon of house.ancestralWeapons;let first=first;let last=last">{{ancestralWeapon}}{{last ? '':', '}}
+              </span>
+            </td>
+            <ng-template #noAncestralWeapon>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

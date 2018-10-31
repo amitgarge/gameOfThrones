@@ -1,0 +1,86 @@
+<!-- Page to display information about a specific book -->
+
+<div class="container bookClass">
+  <div class="row" *ngIf="book">
+    <div class="col-1 mt-4">
+      <a class="btn btn-warning" (click)=goBackToPreviousPage()>Go Back</a>
+    </div>
+    <div class="col-11">
+      
+      <h1 class="display-3 text-center" *ngIf="book.name; else noName">Book-{{book.name}}</h1>
+      <ng-template #noName>
+        <h1 class="display-3 text-center">Anonymous</h1>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row" *ngIf="book">
+    <div class="col">
+      <table class="table table-borderless">
+        <tbody *ngIf="book">
+          <tr class="bg-warning">
+            <th scope="row">ISBN</th>
+            <td *ngIf="book.isbn; else noISBN">{{book.isbn}}</td>
+            <ng-template #noISBN>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Authors</th>
+            <td *ngIf="book.authors && book.authors.length > 1; else noAuthors">
+              <span *ngFor="let author of book.authors;let first=first;let last=last">{{author}}{{last ? '':', '}}
+              </span>
+            </td>
+            <ng-template #noAuthors>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-warning">
+            <th scope="row">Number of pages</th>
+            <td *ngIf="book.numberOfPages; else nonumberOfPages">
+              {{book.numberOfPages}}
+            </td>
+            <ng-template #nonumberOfPages>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">publisher</th>
+            <td *ngIf="book.publisher; else noPublisher">
+              {{book.publisher}}
+            </td>
+            <ng-template #noPublisher>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-warning">
+            <th scope="row">Country</th>
+            <td *ngIf="book.country; else noCountry">
+              {{book.country}}
+            </td>
+            <ng-template #noCountry>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Media Type</th>
+            <td *ngIf="book.mediaType; else noMediaType">
+              {{book.mediaType}}
+            </td>
+            <ng-template #noMediaType>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-warning">
+            <th scope="row">Released</th>
+            <td *ngIf="book.released; else noReleased">
+              {{book.released | date}}
+            </td>
+            <ng-template #noReleased>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

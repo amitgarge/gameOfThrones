@@ -1,0 +1,19 @@
+/* character component */
+
+.heading{
+    background-color: #ececec;
+    width:100%;
+}
+
+.table{
+    margin:auto;
+}
+
+th{
+    text-align:center;    
+}
+
+.characterClass{
+    background-color: #343A40;
+    color: white;
+}

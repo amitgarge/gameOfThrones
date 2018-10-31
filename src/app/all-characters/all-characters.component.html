@@ -1,0 +1,36 @@
+<!--page to display all characters-->
+<div class="container" id="contents">
+  <div class="row">
+    <div class="col mb-2">
+      <img src="src\assets\images\gotbackgrounds.jpg" height="100%" width="100%" class="img-fluid" alt="Responsive image">
+    </div>
+  </div>
+  <div class="row" *ngIf="allCharacters.length > 0">
+    <!--if data exists-->
+    <div *ngFor="let character of allCharacters" class="col">
+      <div class="card border-primary mb-3 text-center" style="width: 18rem;">
+        <div class="card-header">Character</div>
+        <div class="card-body">
+          <h5 class="card-title" *ngIf="character.name; else noName">{{character.name}}</h5>
+          <ng-template #noName>
+            <h5 class="card-title">Anonymous</h5>
+          </ng-template>
+          <p class="card-text"></p>
+        </div>
+        <p class="list-group-item" *ngIf="character.gender; else noGender">Gender: {{character.gender}}</p>
+        <ng-template #noGender>
+          <p class="list-group-item">Gender: Unknown</p>
+        </ng-template>
+        <p class="list-group-item" *ngIf="character.culture; else noCulture">Culture: {{character.culture}}</p>
+        <ng-template #noCulture>
+          <p class="list-group-item">Culture: Unknown</p>
+        </ng-template>
+        <a href="#" class="btn btn-primary" [routerLink]="['/characters',character.url]">Details</a>
+      </div>
+
+    </div>
+    <!--End of col div and ngFor loop-->
+  </div>
+  <!--End of row and ngIf block-->
+</div>
+<!--End of container - #contents-->

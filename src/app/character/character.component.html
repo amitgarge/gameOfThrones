@@ -1,0 +1,99 @@
+<!--page to display information about the specific book -->
+<div class="container characterClass">
+  <div class="row" *ngIf="character">    
+    <div class="col-1 mt-4">
+      <a class="btn btn-primary" (click)=goBackToPreviousPage()>Go Back</a>
+    </div>
+    <div class="col-11">
+      <h1 class="display-3 text-center" *ngIf="character.name; else noName"> {{character.name}}</h1>
+      <ng-template #noName>
+        <h1 class="display-3 text-center">Anonymous</h1>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row" *ngIf="character">
+    <div class="col">
+      <table class="table table-borderless">
+        <tbody *ngIf="character">
+          <tr class="bg-primary">
+            <th scope="row">Gender</th>
+            <td *ngIf="character.gender; else noGender">{{character.gender}}</td>
+            <ng-template #noGender>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Culture</th>
+            <td *ngIf="character.culture; else noCulture">{{character.culture}}</td>
+            <ng-template #noCulture>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-primary">
+            <th scope="row">Born</th>
+            <td *ngIf="character.born; else noBorn">{{character.born}}</td>
+            <ng-template #noBorn>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Died</th>
+            <td *ngIf="character.died; else noDied">{{character.died}}</td>
+            <ng-template #noDied>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-primary">
+            <th scope="row">Titles</th>
+            <td *ngIf="character.titles && character.titles.length > 1; else noTitles">
+              <span *ngFor="let title of character.titles;let first=first;let last=last">{{title}}{{last ? '':', '}}
+              </span>
+            </td>
+            <ng-template #noTitles>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Aliases</th>
+            <td *ngIf="character.aliases && character.aliases.length > 1; else noAliases">
+              <span *ngFor="let alias of character.aliases;let first=first;let last=last">{{alias}}{{last ? '':', '}}</span>
+            </td>
+            <ng-template #noAliases>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-primary">
+            <th scope="row">Father</th>
+            <td *ngIf="character.father; else noFather">{{character.father}}</td>
+            <ng-template #noFather>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Mother</th>
+            <td *ngIf="character.mother; else noMother">{{character.mother}}</td>
+            <ng-template #noMother>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="bg-primary">
+            <th scope="row">TV Series</th>
+            <td *ngIf="character.tvSeries.length !=undefined && character.tvSeries.length > 1; else noTvSeries"><span *ngFor="let series of character.tvSeries;let first=first;let last=last">{{series}}{{last
+                ? '':', '}}</span></td>
+            <ng-template #noTvSeries>
+              <td>N/A</td>
+            </ng-template>
+          </tr>
+          <tr class="">
+            <th scope="row">Played By</th>
+            <td *ngIf="character.playedBy.length !=undefined && character.playedBy.length > 1; else noPlayedBy"><span *ngFor="let playedby of character.playedby;let first=first;let last=last">{{playedby}}{{last
+                    ? '':', '}}</span></td>
+            <ng-template #noPlayedBy>
+              <td>N/A</td>
+            </ng-template>
+          </tr>          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

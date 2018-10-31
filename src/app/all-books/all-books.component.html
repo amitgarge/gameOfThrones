@@ -1,0 +1,39 @@
+<!--page to display all books-->
+<div class="container" id="contents">
+  <div class="row">
+    <div class="col mb-2">
+      <img src="../assets/images/gotbackgrounds.jpg" class="img-fluid" alt="Responsive image">
+    </div>
+  </div>
+  <div class="row" *ngIf="allBooks.length > 0">
+    <!--if data exists-->
+    <div *ngFor="let book of allBooks" class="col">
+      <div class="card border-warning mb-3 text-center" style="width: 18rem;">
+        <div class="card-header">Book</div>
+        <div class="card-body">
+          <h5 class="card-title" *ngIf="book.name; else noName">{{book.name}}</h5>
+          <ng-template #noName>
+            <h5 class="card-title">Anonymous</h5>
+          </ng-template>
+          <p class="card-text"></p>
+        </div>
+        <p class="list-group-item" *ngIf="book.publisher; else noPublisher">Publisher: {{book.publisher}}</p>
+        <ng-template #noPublisher>
+          <p class="list-group-item">Publisher: Unknown</p>
+        </ng-template>
+
+        <p class="list-group-item" *ngIf="book.authors && book.authors.length >= 1; else noAuthors">Authors: <span *ngFor="let author of book.authors;let first=first;let last=last">{{author}}{{last
+            ? '':', '}}
+          </span></p>
+        <ng-template #noAuthors>
+          <p class="list-group-item">Authors: Unknown</p>
+        </ng-template>
+        <a href="#" class="btn btn-warning" [routerLink]="['/books',book.url]">Details</a>
+      </div>
+
+    </div>
+    <!--End of col div and ngFor loop-->
+  </div>
+  <!--End of row and ngIf block-->
+</div>
+<!--End of container - #contents-->

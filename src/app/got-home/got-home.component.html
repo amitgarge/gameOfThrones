@@ -1,0 +1,85 @@
+<!-- home page all game-of-thrones, displaying all contents books, characters and houses -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="src\assets\images\gotbackgrounds.jpg" class="img-fluid" alt="Game of thrones">
+    </div>
+  </div>
+  <br />
+  <div class="row" *ngIf="alldata.length > 0">
+    <div *ngFor="let data of alldata" class="col">
+      <div *ngIf="data.url.includes('characters')">		<!-- if url contains the word 'characters' this div will be rendered  -->
+        <div class="card border-primary mb-3 text-center" style="width: 18rem;">
+          <div class="card-header">Character</div>
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="data.name; else noName">{{data.name}}</h5>
+            <ng-template #noName>
+              <h5 class="card-title">Anonymous</h5>
+            </ng-template>
+            <p class="card-text"></p>
+          </div>
+          <p class="list-group-item" *ngIf="data.gender; else noGender">Gender: {{data.gender}}</p>
+          <ng-template #noGender>
+            <p class="list-group-item">Gender: Unknown</p>
+          </ng-template>
+          <p class="list-group-item" *ngIf="data.culture; else noCulture">Culture: {{data.culture}}</p>
+          <ng-template #noCulture>
+            <p class="list-group-item">Culture: Unknown
+            </p>
+          </ng-template>
+          <a href="#" class="btn btn-primary" [routerLink]="['/characters',data.url]">Details</a>
+        </div>
+      </div>
+      <div *ngIf="data.url.includes('books')"> <!-- if url contains the word 'books' this div will be rendered  -->
+        <div class="card border-warning mb-3 text-center" style="width: 18rem;">
+          <div class="card-header">Book</div>
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="data.name; else noName">{{data.name}}</h5>
+            <ng-template #noName>
+              <h5 class="card-title">Anonymous</h5>
+            </ng-template>
+            <p class="card-text"></p>
+          </div>
+
+          <p class="list-group-item" *ngIf="data.publisher; else noPublisher">Publisher: {{data.publisher}}</p>
+          <ng-template #noPublisher>
+            <p class="list-group-item">Publisher: Unknown</p>
+          </ng-template>
+
+          <p class="list-group-item" *ngIf="data.authors && data.authors.length >= 1; else noAuthors">Authors: <span *ngFor="let author of data.authors;let first=first;let last=last">{{author}}{{last
+              ? '':', '}}
+            </span></p>
+          <ng-template #noAuthors>
+            <p class="list-group-item">Authors: Unknown</p>
+          </ng-template>
+
+
+          <a href="#" class="btn btn-warning" [routerLink]="['/books',data.url]">Details</a>
+        </div>
+      </div>
+      <div *ngIf="data.url.includes('houses')"> <!-- if url contains the word 'houses' this div will be rendered  -->
+        <div class="card border-success mb-3 text-center" style="width: 18rem;">
+          <div class="card-header">House</div>
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="data.name; else noName">{{data.name}}</h5>
+
+            <ng-template #noName>
+              <h5 class="card-title">Anonymous</h5>
+            </ng-template>
+            <p class="card-text"></p>
+          </div>
+          <p class="list-group-item" *ngIf="data.region; else noRegion">Region: {{data.region}}</p>
+          <ng-template #noRegion>
+            <p class="list-group-item">Region: Unknown</p>
+          </ng-template>
+
+          <p class="list-group-item" *ngIf="data.words; else noWords">Words: {{data.words}}</p>
+          <ng-template #noWords>
+            <p class="list-group-item">Words: Unknown</p>
+          </ng-template>
+          <a href="#" class="btn btn-success" [routerLink]="['/houses',data.url]">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
